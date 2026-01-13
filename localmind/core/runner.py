@@ -93,27 +93,24 @@ def run_text(
     return output
 
 
-def run_dir(
-    prompt_file: Path,
-    source_dir: Path,
-    model: str | None = None,
-    dry_run: bool = False,
-):
+def run_dir(prompt_file: Path, source_dir: Path, model: str | None = None, dry_run: bool = False):
     """
-    Run a prompt file against all files in a directory.
+    Run a prompt file against all files in a directory tree (recursively).
+
+    Parameters:
+        prompt_file: Path to the prompt template
+        source_dir: Directory containing source files
+        model: Ollama model name. Uses default from config if None
+        dry_run: If True, prints instead of executing
     """
     model = model or get_default_model()
     print(f"[RUNNER] run_dir called: {prompt_file} -> {source_dir} (model={model})")
-
-    for file_path in sorted(source_dir.iterdir()):
+    prompt_text = prompt_file.read_text()
+    
+    for file_path in sorted(source_dir.rglob("*")):  # recursively find all files
         if file_path.is_file():
-            print(f"[RUNNER] Processing file: {file_path.name}")
-            run_file(
-                prompt_file=prompt_file,
-                source_file=file_path,
-                model=model,
-                dry_run=dry_run,
-            )
+            print(f"[RUNNER] Processing file: {file_path}")
+            run_file(prompt_file, file_path, model=model, dry_run=dry_run)
 
 
 def _call_ollama(prompt_text: str, source_text: str, model: str) -> str:

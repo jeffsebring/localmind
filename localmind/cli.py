@@ -165,9 +165,9 @@ def build_parser() -> argparse.ArgumentParser:
     p_text.add_argument("source_file")
     p_text.set_defaults(func=cmd_text)
 
-    # dir
+    # dir (fixed: positional prompt_file)
     p_dir = subparsers.add_parser("dir", help="Run a prompt file on a directory")
-    p_dir.add_argument("--prompt-file", required=True)
+    p_dir.add_argument("prompt_file")  # changed from --prompt-file
     p_dir.add_argument("source_dir")
     p_dir.set_defaults(func=cmd_dir)
 
