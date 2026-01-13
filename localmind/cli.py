@@ -2,57 +2,81 @@
 """
 LocalMind CLI entrypoint.
 
-This file is intentionally boring.
-It contains *no* business logic, *no* inference logic, and *no* filesystem policy.
-
 Responsibilities:
 - Define the CLI interface (argparse)
 - Validate arguments at the CLI boundary
-- Dispatch to core runner functions using a *stable, explicit API*
-
-If something breaks at runtime, this file should make it obvious *where* and *why*.
+- Dispatch to core runner functions using a stable, explicit API
 """
 
 from __future__ import annotations
 
 import argparse
-import subprocess
-import sys
 from pathlib import Path
-
-from localmind.core import runner
+from .core import runner, config
 
 # --------------------------------------------------------------------------------------
 # Command handlers
 # --------------------------------------------------------------------------------------
 
-
 def cmd_file(args: argparse.Namespace) -> None:
-    """Run a prompt file against a single source file."""
-    runner.run_file(
-        prompt_file=Path(args.prompt_file).expanduser().resolve(),
-        source_file=Path(args.source_file).expanduser().resolve(),
-        model=args.model,
+    """
+    Run a prompt file against a single source file.
+    Writes output to file in outputs_dir unless dry_run is True.
+    """
+    prompt_file = Path(args.prompt_file).expanduser().resolve()
+    source_file = Path(args.source_file).expanduser().resolve()
+
+    # Use CLI override or fallback to default from config
+    model = args.model or config.get_default_model()
+
+    # Run the prompt against the source file
+    output = runner.run_file(
+        prompt_file=prompt_file,
+        source_file=source_file,
+        model=model,
         dry_run=args.dry_run,
     )
+
+    # Save output to outputs directory if not dry run
+    if output and not args.dry_run:
+        outputs_dir = config.get_outputs_dir()
+        outputs_dir.mkdir(parents=True, exist_ok=True)
+        output_file = outputs_dir / f"{source_file.stem}_output.txt"
+        output_file.write_text(output)
+        print(f"[OUTPUT SAVED] {output_file}")
 
 
 def cmd_text(args: argparse.Namespace) -> None:
-    """Run an inline prompt against a single source file."""
-    runner.run_text(
-        prompt=args.prompt,
-        source_file=Path(args.source_file).expanduser().resolve(),
-        model=args.model,
+    """
+    Run inline prompt text against a single source file.
+    """
+    source_file = Path(args.source_file).expanduser().resolve()
+    output = runner.run_text(
+        prompt_text=args.prompt,
+        source_text=source_file.read_text(),
+        model=args.model or config.get_default_model(),
         dry_run=args.dry_run,
     )
 
+    if output and not args.dry_run:
+        outputs_dir = config.get_outputs_dir()
+        outputs_dir.mkdir(parents=True, exist_ok=True)
+        output_file = outputs_dir / f"{source_file.stem}_text_output.txt"
+        output_file.write_text(output)
+        print(f"[OUTPUT SAVED] {output_file}")
+
 
 def cmd_dir(args: argparse.Namespace) -> None:
-    """Run a prompt file against all supported files in a directory."""
+    """
+    Run a prompt file against all supported files in a directory.
+    """
+    prompt_file = Path(args.prompt_file).expanduser().resolve()
+    source_dir = Path(args.source_dir).expanduser().resolve()
+
     runner.run_dir(
-        prompt_file=Path(args.prompt_file).expanduser().resolve(),
-        source_dir=Path(args.source_dir).expanduser().resolve(),
-        model=args.model,
+        prompt_file=prompt_file,
+        source_dir=source_dir,
+        model=args.model or config.get_default_model(),
         dry_run=args.dry_run,
     )
 
@@ -60,7 +84,7 @@ def cmd_dir(args: argparse.Namespace) -> None:
 def cmd_last(args: argparse.Namespace) -> None:
     """Re-run the last-used prompt/file combination."""
     runner.run_last(
-        model=args.model,
+        model=args.model or config.get_default_model(),
         dry_run=args.dry_run,
     )
 
@@ -83,7 +107,6 @@ def cmd_prompt(_: argparse.Namespace) -> None:
 # --------------------------------------------------------------------------------------
 # Argument parser
 # --------------------------------------------------------------------------------------
-
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -145,7 +168,6 @@ def build_parser() -> argparse.ArgumentParser:
 # --------------------------------------------------------------------------------------
 # Entry point
 # --------------------------------------------------------------------------------------
-
 
 def main(argv: list[str] | None = None) -> None:
     parser = build_parser()
