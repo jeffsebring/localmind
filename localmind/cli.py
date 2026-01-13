@@ -12,38 +12,63 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+from datetime import datetime
 from .core import runner, config
 
 # --------------------------------------------------------------------------------------
 # Command handlers
 # --------------------------------------------------------------------------------------
 
+def run_file(prompt_file: Path, source_file: Path, model: str = None, dry_run: bool = False):
+    """
+    Run a prompt file against a source file using Ollama.
+    Prints output to terminal and writes to a timestamped file in outputs_dir.
+    """
+    from . import config
+
+    print(f"[RUNNER] run_file called: {prompt_file} -> {source_file} (model={model})")
+
+    # Resolve model from config if None
+    if model is None:
+        model = config.get_default_model()
+
+    # Read files
+    prompt_text = prompt_file.read_text()
+    source_text = source_file.read_text()
+
+    if dry_run:
+        print("[DRY RUN]")
+        print(f"Model: {model}")
+        print(f"Prompt:\n{prompt_text}")
+        print(f"Source file contents:\n{source_text}")
+        return
+
+    # Call Ollama
+    output_text = _call_ollama(prompt_text, source_text, model)
+
+    # Generate timestamped output filename
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    outputs_dir = config.get_outputs_dir()
+    outputs_dir.mkdir(parents=True, exist_ok=True)
+    output_file = outputs_dir / f"{source_file.stem}_{timestamp}{source_file.suffix}"
+
+    # Write to file
+    output_file.write_text(output_text, encoding="utf-8")
+    print(f"[RUNNER] Output written to: {output_file}")
+
+    return output_text
+
 def cmd_file(args: argparse.Namespace) -> None:
     """
-    Run a prompt file against a single source file.
-    Writes output to file in outputs_dir unless dry_run is True.
+    CLI wrapper: Run a prompt file on a source file using runner.run_file.
     """
-    prompt_file = Path(args.prompt_file).expanduser().resolve()
-    source_file = Path(args.source_file).expanduser().resolve()
-
-    # Use CLI override or fallback to default from config
     model = args.model or config.get_default_model()
-
-    # Run the prompt against the source file
-    output = runner.run_file(
-        prompt_file=prompt_file,
-        source_file=source_file,
+    runner.run_file(
+        prompt_file=Path(args.prompt_file).expanduser().resolve(),
+        source_file=Path(args.source_file).expanduser().resolve(),
         model=model,
         dry_run=args.dry_run,
     )
-
-    # Save output to outputs directory if not dry run
-    if output and not args.dry_run:
-        outputs_dir = config.get_outputs_dir()
-        outputs_dir.mkdir(parents=True, exist_ok=True)
-        output_file = outputs_dir / f"{source_file.stem}_output.txt"
-        output_file.write_text(output)
-        print(f"[OUTPUT SAVED] {output_file}")
 
 
 def cmd_text(args: argparse.Namespace) -> None:
