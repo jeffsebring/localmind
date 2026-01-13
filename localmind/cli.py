@@ -14,6 +14,7 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 from .core import runner, config
+from .core.config import get_default_model, get_outputs_dir
 
 # --------------------------------------------------------------------------------------
 # Command handlers
@@ -24,7 +25,6 @@ def run_file(prompt_file: Path, source_file: Path, model: str = None, dry_run: b
     Run a prompt file against a source file using Ollama.
     Prints output to terminal and writes to a timestamped file in outputs_dir.
     """
-    from . import config
 
     print(f"[RUNNER] run_file called: {prompt_file} -> {source_file} (model={model})")
 
