@@ -1,0 +1,14 @@
+[project]
+name = "localmind"
+version = "0.1.0"
+description = "Local-first prompt runner for files and directories, with extensible AI model support."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Jeff Sebring", email = "jeff@jeffsebring.com" }]
+dependencies = [
+    "python-dotenv",
+]
+
+[build-system]
+requires = ["setuptools>=65.5", "wheel"]
+build-backend = "setuptools.build_meta"

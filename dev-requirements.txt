@@ -1,0 +1,18 @@
+# Linting and code style
+black>=24.0.0
+flake8>=6.0.0
+isort>=6.0.0
+
+# Type checking
+mypy>=1.5.0
+types-requests>=2.31.0
+
+# Testing
+pytest>=8.0.0
+pytest-cov>=4.1.0
+
+# CLI enhancement & interactive testing
+rich>=14.0.0
+
+# Pre-commit hooks
+pre-commit>=3.4.0
