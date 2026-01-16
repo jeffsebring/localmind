@@ -10,6 +10,8 @@ This document provides guidelines for contributing to LocalMind, including devel
 
 LocalMind is a Python project designed to be modular, maintainable, and open-source. The development workflow assumes familiarity with Python 3.13+, virtual environments, and basic Git usage.
 
+---
+
 ## Development Setup
 
 1. Clone the repository:
@@ -39,6 +41,8 @@ pip install -r requirements.txt
 export PATH="$PATH:$(pwd)/localmind"
 ```
 
+---
+
 ## Project Structure
 
 ```
@@ -51,12 +55,16 @@ localmind/
 └── requirements.txt
 ```
 
+---
+
 ## Coding Standards
 
 * Use **PEP8** style conventions.
 * Docstrings are required for all public functions and classes.
 * Type hints are encouraged for all function signatures.
 * Avoid breaking changes in the public API.
+
+---
 
 ## Running Tests
 
@@ -66,6 +74,8 @@ Unit tests are located in the `tests/` directory. To run tests:
 pytest tests/ --maxfail=1 --disable-warnings -q
 ```
 
+---
+
 ## CLI Testing
 
 Use the `--dry-run` flag for safe testing of CLI commands without executing prompts:
@@ -73,6 +83,8 @@ Use the `--dry-run` flag for safe testing of CLI commands without executing prom
 ```bash
 python -m localmind file ~/.localmind/prompts/example.md ~/localmind_test/hello.py --dry-run
 ```
+
+---
 
 ## Contributing
 
@@ -86,10 +98,14 @@ git checkout -b feature/my-feature
 3. Make your changes and ensure all tests pass.
 4. Submit a pull request against the `master` branch.
 
+---
+
 ## Version Control Guidelines
 
 * Use meaningful commit messages.
 * Rebase before merging to maintain a clean history.
+
+---
 * Tag releases using semantic versioning (e.g., v1.0.0).
 
 ## Notes
@@ -97,4 +113,4 @@ git checkout -b feature/my-feature
 * This project aims to be **open, modular, and easily extensible**.
 * All development should prioritize stability and backward compatibility for the CLI interface.
 
---- End of Development Doc
+--- End of development.md

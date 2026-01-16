@@ -1,8 +1,12 @@
 # LocalMind
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Documentation](https://img.shields.io/badge/docs-github_pages-blue)](https://jeffsebring.github.io/localmind/)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jeffsebring/localmind/ci.yml?branch=master&label=CI&logo=github)](https://github.com/jeffsebring/localmind/actions)
+[![Python Version](https://img.shields.io/pypi/pyversions/localmind)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 LocalMind is a local-first prompt runner designed to automate running prompts and scripts against source files and directories. It provides a consistent CLI interface for running prompt files, inline prompts, and directory-wide processing with outputs logged to timestamped files.
+
+---
 
 ## Features
 
@@ -12,6 +16,8 @@ LocalMind is a local-first prompt runner designed to automate running prompts an
 * Timestamped output logging
 * Configurable defaults via `~/.localmind/config.json`
 
+---
+
 ## Installation
 
 ```bash
@@ -19,6 +25,8 @@ git clone https://github.com/jeffsebring/localmind.git
 cd localmind
 pip install -r requirements.txt
 ```
+
+---
 
 ## Usage
 
@@ -36,6 +44,8 @@ python -m localmind dir ~/.localmind/prompts/uppercase.md ~/localmind_test/ --ex
 python -m localmind --dry-run text "uppercase this file" ~/localmind_test/hello.py
 ```
 
+---
+
 ## Configuration
 
 LocalMind looks for configuration in `~/.localmind/config.json`. Example:
@@ -48,7 +58,10 @@ LocalMind looks for configuration in `~/.localmind/config.json`. Example:
 }
 ```
 
+---
+
 ## Philosophy
 
 LocalMind is designed to be **local-first, extensible, and modular**. It encourages reproducible automation workflows while giving developers complete control over prompts, source files, and output management.
 
+---

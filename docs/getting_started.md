@@ -185,3 +185,8 @@ python -m localmind last
 - Explore inline prompt usage for quick testing (`text` command).
 - Organize prompt files by project for easier management.
 - Combine LocalMind with version control for reproducible AI-assisted workflows.
+
+---
+
+End of getting_started.md
+

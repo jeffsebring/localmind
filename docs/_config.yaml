@@ -1,0 +1,5 @@
+title: LocalMind Documentation
+description: Local AI prompt runner documentation
+baseurl: "/localmind"  # your repo name
+url: "https://jeffsebring.github.io"
+theme: minima
