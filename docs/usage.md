@@ -6,7 +6,7 @@ title: Usage | LocalMind - Local AI Prompt Runner
 
 ## Overview
 
-This document describes how to use LocalMind from the command line to run prompts on files, directories, or inline text. All commands can be run via the `lcm` CLI or with `python -m localmind`.
+This document describes how to use LocalMind from the command line to run prompts on files, directories, or inline text. All commands can be run via the `lcm` CLI or with `lcm`.
 
 ---
 
@@ -17,7 +17,7 @@ This document describes how to use LocalMind from the command line to run prompt
 Run a prompt file on a single source file.
 
 ```bash
-python -m localmind file <prompt_file> <source_file> [--model MODEL] [--dry-run]
+lcm file <prompt_file> <source_file> [--model MODEL] [--dry-run]
 ```
 
 **Parameters**
@@ -30,7 +30,7 @@ python -m localmind file <prompt_file> <source_file> [--model MODEL] [--dry-run]
 **Example**
 
 ```bash
-python -m localmind file ~/.localmind/prompts/uppercase.md ~/projects/hello.py --dry-run
+lcm file ~/.localmind/prompts/uppercase.md ~/projects/hello.py --dry-run
 ```
 
 ---
@@ -40,7 +40,7 @@ python -m localmind file ~/.localmind/prompts/uppercase.md ~/projects/hello.py -
 Run an inline prompt string against a source file.
 
 ```bash
-python -m localmind text "<prompt_text>" <source_file> [--model MODEL] [--dry-run]
+lcm text "<prompt_text>" <source_file> [--model MODEL] [--dry-run]
 ```
 
 **Parameters**
@@ -53,7 +53,7 @@ python -m localmind text "<prompt_text>" <source_file> [--model MODEL] [--dry-ru
 **Example**
 
 ```bash
-python -m localmind text "uppercase this file" ~/projects/hello.py --dry-run
+lcm text "uppercase this file" ~/projects/hello.py --dry-run
 ```
 
 ---
@@ -63,7 +63,7 @@ python -m localmind text "uppercase this file" ~/projects/hello.py --dry-run
 Run a prompt file against all supported files in a directory.
 
 ```bash
-python -m localmind dir <prompt_file> <source_dir> [--model MODEL] [--dry-run] [--ext EXTENSION]
+lcm dir <prompt_file> <source_dir> [--model MODEL] [--dry-run] [--ext EXTENSION]
 ```
 
 **Parameters**
@@ -77,7 +77,7 @@ python -m localmind dir <prompt_file> <source_dir> [--model MODEL] [--dry-run] [
 **Example**
 
 ```bash
-python -m localmind dir ~/.localmind/prompts/uppercase.md ~/projects/myrepo --ext .py
+lcm dir ~/.localmind/prompts/uppercase.md ~/projects/myrepo --ext .py
 ```
 
 ---
@@ -87,7 +87,7 @@ python -m localmind dir ~/.localmind/prompts/uppercase.md ~/projects/myrepo --ex
 Re-run the last-used prompt/file combination.
 
 ```bash
-python -m localmind last [--model MODEL] [--dry-run]
+lcm last [--model MODEL] [--dry-run]
 ```
 
 ---
@@ -97,7 +97,7 @@ python -m localmind last [--model MODEL] [--dry-run]
 Print LocalMind's important paths.
 
 ```bash
-python -m localmind paths
+lcm paths
 ```
 
 ---
@@ -107,7 +107,7 @@ python -m localmind paths
 Show information about generated output files.
 
 ```bash
-python -m localmind outputs
+lcm outputs
 ```
 
 ---
@@ -117,7 +117,7 @@ python -m localmind outputs
 Interactively select a prompt file to run.
 
 ```bash
-python -m localmind prompt
+lcm prompt
 ```
 
 ---

@@ -32,16 +32,16 @@ pip install -r requirements.txt
 
 ```bash
 # Run a prompt file on a file
-python -m localmind file ~/.localmind/prompts/refactor.md ~/localmind_test/hello.py
+lcm file ~/.localmind/prompts/refactor.md ~/localmind_test/hello.py
 
 # Run inline text
-python -m localmind text "uppercase this file" ~/localmind_test/hello.py
+lcm text "uppercase this file" ~/localmind_test/hello.py
 
 # Run a prompt file on a directory
-python -m localmind dir ~/.localmind/prompts/uppercase.md ~/localmind_test/ --ext .py
+lcm dir ~/.localmind/prompts/uppercase.md ~/localmind_test/ --ext .py
 
 # Dry-run example
-python -m localmind --dry-run text "uppercase this file" ~/localmind_test/hello.py
+lcm --dry-run text "uppercase this file" ~/localmind_test/hello.py
 ```
 
 ---
