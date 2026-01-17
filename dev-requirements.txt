@@ -16,3 +16,10 @@ rich>=14.0.0
 
 # Pre-commit hooks
 pre-commit>=3.4.0
+
+# Build & release
+build>=1.1.0
+twine>=4.0.0
+
+# Optional: interactive shell
+ipython>=8.0.0

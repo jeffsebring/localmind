@@ -59,48 +59,58 @@ def cmd_prompt(_: argparse.Namespace) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="lcm", description="LocalMind – local-first prompt runner")
-    parser.add_argument("--model", default=None, help="Model override (otherwise use config default)")
-    parser.add_argument("--dry-run", action="store_true", help="Do not execute inference; print what would run")
+    parser = argparse.ArgumentParser(
+        prog="lcm",
+        description="LocalMind – local-first prompt runner"
+    )
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    # file
+    # ----------------- FILE -----------------
     p_file = subparsers.add_parser("file", help="Run a prompt file on a file")
     p_file.add_argument("prompt_file")
     p_file.add_argument("source_file")
+    p_file.add_argument("--dry-run", action="store_true", help="Do not execute inference; print what would run")
+    p_file.add_argument("--model", default=None, help="Model override (otherwise use config default)")
     p_file.set_defaults(func=cmd_file)
 
-    # text
+    # ----------------- TEXT -----------------
     p_text = subparsers.add_parser("text", help="Run inline prompt text on a file")
     p_text.add_argument("prompt")
     p_text.add_argument("source_file")
+    p_text.add_argument("--dry-run", action="store_true", help="Do not execute inference; print what would run")
+    p_text.add_argument("--model", default=None, help="Model override (otherwise use config default)")
     p_text.set_defaults(func=cmd_text)
 
-    # dir
+    # ----------------- DIR -----------------
     p_dir = subparsers.add_parser("dir", help="Run a prompt file on a directory")
     p_dir.add_argument("prompt_file")
     p_dir.add_argument("source_dir")
     p_dir.add_argument("--ext", default=None, help="Filter files by extension (e.g. .py, .md)")
+    p_dir.add_argument("--dry-run", action="store_true", help="Do not execute inference; print what would run")
+    p_dir.add_argument("--model", default=None, help="Model override (otherwise use config default)")
     p_dir.set_defaults(func=cmd_dir)
 
-    # last
+    # ----------------- LAST -----------------
     p_last = subparsers.add_parser("last", help="Re-run last invocation")
+    p_last.add_argument("--dry-run", action="store_true", help="Do not execute inference; print what would run")
+    p_last.add_argument("--model", default=None, help="Model override (otherwise use config default)")
     p_last.set_defaults(func=cmd_last)
 
-    # paths
+    # ----------------- PATHS -----------------
     p_paths = subparsers.add_parser("paths", help="Show LocalMind paths")
     p_paths.set_defaults(func=cmd_paths)
 
-    # outputs
+    # ----------------- OUTPUTS -----------------
     p_outputs = subparsers.add_parser("outputs", help="Show output folders")
     p_outputs.set_defaults(func=cmd_outputs)
 
-    # prompt
+    # ----------------- PROMPT -----------------
     p_prompt = subparsers.add_parser("prompt", help="Select prompt interactively")
     p_prompt.set_defaults(func=cmd_prompt)
 
     return parser
+
 
 
 def main(argv: list[str] | None = None) -> None:

@@ -5,10 +5,37 @@ description = "Local-first prompt runner for files and directories, with extensi
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "Jeff Sebring", email = "jeff@jeffsebring.com" }]
+requires-python = ">=3.11"
 dependencies = [
     "python-dotenv",
 ]
 
+# URLs for PyPI/GitHub
+[project.urls]
+homepage = "https://github.com/jeffsebring/localmind"
+repository = "https://github.com/jeffsebring/localmind"
+
+# CLI entry point
+[project.scripts]
+lcm = "localmind.cli:main"
+
+
+# Optional dev dependencies
+[project.optional-dependencies]
+dev = [
+    "black",
+    "isort",
+    "mypy",
+]
+
 [build-system]
-requires = ["setuptools>=65.5", "wheel"]
+requires = ["setuptools>=77.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["localmind*"]
+
+[tool.setuptools]
+include-package-data = true
+py-modules = ["localmind.cli"]
