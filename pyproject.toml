@@ -3,7 +3,8 @@ name = "localmind"
 version = "0.1.0"
 description = "Local-first prompt runner for files and directories, with extensible AI model support."
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE.md"]
 authors = [{ name = "Jeff Sebring", email = "jeff@jeffsebring.com" }]
 requires-python = ">=3.11"
 dependencies = [

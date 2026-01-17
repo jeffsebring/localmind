@@ -3,11 +3,53 @@ import subprocess
 from pathlib import Path
 from datetime import datetime
 from .config import get_default_model, get_outputs_dir
+import json
+
+LAST_RUN_FILE = get_outputs_dir() / "last_run.json"
+
+def run_last(model: str | None = None, dry_run: bool = False):
+    """
+    Re-run the last invocation stored in last_run.json.
+
+    Reads the last prompt, source, command, and optional extension filter,
+    and re-invokes the appropriate runner function.
+    """
+    if not LAST_RUN_FILE.exists():
+        print("[RUNNER] No last run recorded.")
+        return
+
+    data = json.loads(LAST_RUN_FILE.read_text(encoding="utf-8"))
+
+    command = data["command"]
+    prompt_file = Path(data["prompt_file"])
+    source_file = Path(data.get("source_file", "")) if data.get("source_file") else None
+    source_dir = Path(data.get("source_dir", "")) if data.get("source_dir") else None
+    ext_filter = data.get("ext")
+    prompt_text = data.get("prompt_text")
+
+    print(f"[RUNNER] Re-running last command: {command}")
+
+    if command == "file" and prompt_file and source_file:
+        run_file(prompt_file, source_file, model=model, dry_run=dry_run)
+    elif command == "text" and prompt_text and source_file:
+        run_text(prompt_text, source_text=source_file.read_text(), model=model, dry_run=dry_run)
+    elif command == "dir" and prompt_file and source_dir:
+        run_dir(prompt_file, source_dir, model=model, dry_run=dry_run, ext_filter=ext_filter)
+    else:
+        print("[RUNNER] Last run data is incomplete or invalid.")
 
 
 def _write_output(*, output_text: str, source_file: Path | None, model: str) -> Path:
     """
     Write Ollama output to a timestamped file in the outputs directory.
+    
+    Args:
+        output_text (str): The text content to be written to the output file.
+        source_file (Path | None): The path of the source file used for naming, if provided.
+        model (str): The Ollama model used for generating the output.
+        
+    Returns:
+        Path: The path to the created output file.
     """
     outputs_dir = get_outputs_dir()
     outputs_dir.mkdir(parents=True, exist_ok=True)
@@ -21,8 +63,16 @@ def _write_output(*, output_text: str, source_file: Path | None, model: str) -> 
 
     return output_path
 
-
 def run_file(prompt_file: Path, source_file: Path, model: str = None, dry_run: bool = False):
+    """
+    Run a script to process a prompt file and optionally a source file using the specified Ollama model.
+    
+    Args:
+        prompt_file (Path): The path to the prompt file.
+        source_file (Path): The path to the source file.
+        model (str, optional): The Ollama model to use for processing. Defaults to None.
+        dry_run (bool, optional): If True, run without creating an output file. Defaults to False.
+    """
     print(f"[RUNNER] run_file called: {prompt_file} -> {source_file} (model={model})")
     model = model or get_default_model()
 
@@ -41,8 +91,16 @@ def run_file(prompt_file: Path, source_file: Path, model: str = None, dry_run: b
     print(f"[OUTPUT SAVED] {output_path}")
     return output
 
-
 def run_text(prompt_text: str, source_text: str = "", model: str | None = None, dry_run: bool = False):
+    """
+    Run a script to process text based on the provided prompt and optional source text using the specified Ollama model.
+    
+    Args:
+        prompt_text (str): The text content of the prompt.
+        source_text (str, optional): Additional text input for the Ollama model. Defaults to an empty string.
+        model (str | None, optional): The Ollama model to use for processing. Defaults to None.
+        dry_run (bool, optional): If True, run without creating an output file. Defaults to False.
+    """
     model = model or get_default_model()
     print(f"[RUNNER] run_text called (model={model})")
 
@@ -55,10 +113,16 @@ def run_text(prompt_text: str, source_text: str = "", model: str | None = None, 
 
     return _call_ollama(prompt_text, source_text, model)
 
-
 def run_dir(prompt_file: Path, source_dir: Path, model: str | None = None, dry_run: bool = False, ext_filter: str | None = None):
     """
     Run a prompt file against all files in a directory (recursive).
+    
+    Args:
+        prompt_file (Path): The path to the prompt file.
+        source_dir (Path): The directory containing source files to be processed.
+        model (str | None, optional): The Ollama model to use for processing. Defaults to None.
+        dry_run (bool, optional): If True, run without creating an output file. Defaults to False.
+        ext_filter (str | None, optional): File extension filter for files to be processed. Defaults to None.
     """
     model = model or get_default_model()
     print(f"[RUNNER] run_dir called: {prompt_file} -> {source_dir} (model={model})")
@@ -69,8 +133,18 @@ def run_dir(prompt_file: Path, source_dir: Path, model: str | None = None, dry_r
             print(f"[RUNNER] Processing file: {file_path}")
             run_file(prompt_file, file_path, model=model, dry_run=dry_run)
 
-
 def _call_ollama(prompt_text: str, source_text: str, model: str):
+    """
+    Internal function to call the Ollama model with the given prompt and source text.
+    
+    Args:
+        prompt_text (str): The text content of the prompt.
+        source_text (str): Additional text input for the Ollama model.
+        model (str): The Ollama model to use for processing.
+        
+    Raises:
+        RuntimeError: If the Ollama call fails, raises a runtime error with details about the failure.
+    """
     cmd = ["ollama", "run", model]
     full_input = f"{prompt_text}\n{source_text}"
 
