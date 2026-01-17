@@ -8,4 +8,4 @@ Do not open public GitHub issues for security problems.
 
 ## Supported Versions
 
-LocalMind is actively maintained and tested with Python 3.11+ on Linux, macOS, and Windows.
+LocalMind is actively maintained and tested with Python 3.13.11+ on Linux, macOS, and Windows.
