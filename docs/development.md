@@ -32,7 +32,7 @@ source .venv/bin/activate  # Linux/macOS
 3. Install development dependencies:
 
 ```bash
-pip install -r requirements.txt
+pip install -r dev-requirements.txt
 ```
 
 4. Ensure the `lcm` CLI is available:
@@ -48,7 +48,6 @@ export PATH="$PATH:$(pwd)/localmind"
 ```
 localmind/
 ├── core/         # Core modules and CLI runner
-├── tests/        # Unit and integration tests
 ├── prompts/      # Sample prompt files
 ├── README.md
 ├── pyproject.toml
