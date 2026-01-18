@@ -107,15 +107,7 @@ Example:
 python -m localmind dir ~/.localmind/prompts/uppercase.md ~/projects/myrepo --ext .py
 ```
 
-4. **Last Command**
-
-Re-run the last-used prompt/file combination:
-
-```bash
-python -m localmind last [--model MODEL] [--dry-run]
-```
-
-5. **Paths Command**
+4. **Paths Command**
 
 Print LocalMind important paths:
 
@@ -123,7 +115,7 @@ Print LocalMind important paths:
 python -m localmind paths
 ```
 
-6. **Outputs Command**
+5. **Outputs Command**
 
 Show information about output folders:
 
@@ -131,7 +123,7 @@ Show information about output folders:
 python -m localmind outputs
 ```
 
-7. **Prompt Command**
+6. **Prompt Command**
 
 Interactively select a prompt file:
 
@@ -166,12 +158,6 @@ python -m localmind dir ~/.localmind/prompts/uppercase.md ~/projects/myrepo --ex
 
 ```bash
 python -m localmind outputs
-```
-
-5. Re-run the last prompt:
-
-```bash
-python -m localmind last
 ```
 
 ## Tips

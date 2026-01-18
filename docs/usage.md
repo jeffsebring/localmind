@@ -82,17 +82,7 @@ lcm dir ~/.localmind/prompts/uppercase.md ~/projects/myrepo --ext .py
 
 ---
 
-### 4. Last Command
-
-Re-run the last-used prompt/file combination.
-
-```bash
-lcm last [--model MODEL] [--dry-run]
-```
-
----
-
-### 5. Paths Command
+### 4. Paths Command
 
 Print LocalMind's important paths.
 
@@ -102,7 +92,7 @@ lcm paths
 
 ---
 
-### 6. Outputs Command
+### 5. Outputs Command
 
 Show information about generated output files.
 
@@ -112,7 +102,7 @@ lcm outputs
 
 ---
 
-### 7. Prompt Command
+### 6. Prompt Command
 
 Interactively select a prompt file to run.
 

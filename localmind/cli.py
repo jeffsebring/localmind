@@ -72,16 +72,6 @@ def cmd_dir(args: argparse.Namespace) -> None:
         ext_filter=args.ext
     )
 
-def cmd_last(args: argparse.Namespace) -> None:
-    """Re-run the last executed prompt with an optional model override and dry run mode.
-    
-    Args:
-        args (argparse.Namespace): The parsed arguments from the CLI.
-            - model (Optional[str]): Model to use for processing, defaults to the default model configured in the system.
-            - dry_run (bool): If True, performs a dry run without executing inference.
-    """
-    runner.run_last(model=args.model or config.get_default_model(), dry_run=args.dry_run)
-
 def cmd_paths(_: argparse.Namespace) -> None:
     """Print all configured paths used by LocalMind.
     
@@ -141,10 +131,6 @@ def build_parser() -> argparse.ArgumentParser:
     p_dir.add_argument("--model", default=None, help="Model override (otherwise use config default)")
     p_dir.set_defaults(func=cmd_dir)
 
-    # Command to re-run the last executed prompt
-    p_last = subparsers.add_parser("last", help="Re-run last invocation")
-    p_last.add_argument("--dry-run", action="store_true", help="Do not execute inference; print what would run")
-    p_last.set_defaults(func=cmd_last)
 
     # Command to list all configured paths in the system
     p_paths = subparsers.add_parser("paths", help="List all configured paths")

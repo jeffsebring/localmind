@@ -41,7 +41,10 @@ lcm text "uppercase this file" ~/localmind_test/hello.py
 lcm dir ~/.localmind/prompts/uppercase.md ~/localmind_test/ --ext .py
 
 # Dry-run example
-lcm --dry-run text "uppercase this file" ~/localmind_test/hello.py
+lcm text "uppercase this file" ~/localmind_test/hello.py --dry-run 
+
+# Model inline example
+lcm text "uppercase this file" ~/localmind_test/hello.py --model deepseek-coder-v2 
 ```
 
 ---
