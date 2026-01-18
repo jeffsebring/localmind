@@ -1,16 +1,17 @@
 pkgbase = localmind
+	pkgdesc = Local-first AI prompt runner for files and directories, with extensible AI model support
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/jeffsebring/localmind
+	arch = x86_64
+	license = MIT
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	makedepends = python-build
+	depends = python>=3.11
+	depends = python-pip
+	depends = ollama
+	source = https://github.com/jeffsebring/localmind/archive/refs/tags/v0.1.0.tar.gz
+	sha256sums = SKIP
+
 pkgname = localmind
-pkgver = 0.1.0
-pkgrel = 1
-pkgdesc = Local-first AI prompt runner for files and directories, with extensible AI model support
-arch = x86_64
-url = https://github.com/jeffsebring/localmind
-license = MIT
-depends = python>=3.11
-depends = python-pip
-depends = ollama
-makedepends = python-setuptools
-makedepends = python-wheel
-makedepends = python-build
-source = https://github.com/jeffsebring/localmind/archive/refs/tags/v0.1.0.tar.gz
-sha256sums = INSERT_SHA256_HERE
