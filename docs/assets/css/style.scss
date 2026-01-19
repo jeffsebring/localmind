@@ -3,30 +3,28 @@
 
 @import "jekyll-theme-midnight";
 
-#header {
-  .site-nav {
-    background: #0d0d0d;
-    border-bottom: 1px solid #222;
-    padding: 0.75rem 1rem;
-  }
+.site-nav {
+  max-width: 960px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #1f1f1f;
+}
 
-  .site-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1.5rem;
-  }
+.site-nav ul {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .site-nav a {
-    color: #c9d1d9;
-    text-decoration: none;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
+.site-nav a {
+  color: #c9d1d9;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+}
 
-  .site-nav a:hover {
-    color: #58a6ff;
-    text-decoration: none;
-  }
+.site-nav a:hover {
+  color: #58a6ff;
 }

@@ -19,16 +19,7 @@
   </head>
   <body>
       <div id="header">
-        <nav class="site-nav">
-            <ul>
-              <li><a href="{{ site.baseurl }}/">Home</a></li>
-              <li><a href="{{ site.baseurl }}/getting_started.html">Getting Started</a></li>
-              <li><a href="{{ site.baseurl }}/usage.html">Usage</a></li>
-              <li><a href="{{ site.baseurl }}/configuration.html">Configuration</a></li>
-              <li><a href="{{ site.baseurl }}/development.html">Development</a></li>
-              <li><a href="{{ site.github.repository_url }}">View On GitHub</a></li>
-            </ul>
-        </nav>
+        {% include nav.html %}
       </div><!-- end header -->
 
     <div class="wrapper">
