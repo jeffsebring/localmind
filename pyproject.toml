@@ -20,15 +20,6 @@ repository = "https://github.com/jeffsebring/localmind"
 [project.scripts]
 lcm = "localmind.cli:main"
 
-
-# Optional dev dependencies
-[project.optional-dependencies]
-dev = [
-    "black",
-    "isort",
-    "mypy",
-]
-
 [build-system]
 requires = ["setuptools>=77.0", "wheel"]
 build-backend = "setuptools.build_meta"
