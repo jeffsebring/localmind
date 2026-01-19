@@ -2,8 +2,6 @@
 title: Documentation | LocalMind - Local AI Prompt Runner
 ---
 
-# LocalMind Documentation
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 
