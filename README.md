@@ -1,7 +1,5 @@
 # LocalMind
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jeffsebring/localmind/ci.yml?branch=master&label=CI&logo=github)](https://github.com/jeffsebring/localmind/actions)
-[![Python Version](https://img.shields.io/pypi/pyversions/localmind)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 LocalMind is a local-first prompt runner designed to automate running prompts and scripts against source files and directories. It provides a consistent CLI interface for running prompt files, inline prompts, and directory-wide processing with outputs logged to timestamped files.

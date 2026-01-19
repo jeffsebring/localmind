@@ -4,8 +4,6 @@ title: Documentation | LocalMind - Local AI Prompt Runner
 
 # LocalMind Documentation
 
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jeffsebring/localmind/ci.yml?branch=master&label=CI&logo=github)](https://github.com/jeffsebring/localmind/actions)
-[![Python Version](https://img.shields.io/pypi/pyversions/localmind)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 
