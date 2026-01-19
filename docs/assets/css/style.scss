@@ -3,6 +3,12 @@
 
 @import "jekyll-theme-midnight";
 
+body {
+  font-family: "Prociono", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 #header {
   height: auto;
 }
@@ -31,6 +37,22 @@
   box-shadow: none;
   border: none;
   padding: 0;
+  font-family: "League Gothic", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+  font-size: 1.2em;
+}
+
+h1, h2, h3, h4, h5 {  
+  font-family: "League Gothic", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 
 #header #navigation a:hover {
