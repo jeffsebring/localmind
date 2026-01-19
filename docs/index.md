@@ -24,7 +24,6 @@ This documentation provides all the information to install, configure, and use L
 - [Usage](usage.md)
 - [Configuration](configuration.md)
 - [Development](development.md)
-- [Changelog](changelog.md)
 
 ---
 
