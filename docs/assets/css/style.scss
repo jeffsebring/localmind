@@ -3,60 +3,61 @@
 
 @import "jekyll-theme-midnight";
 
-body {
+#localmind {
   font-family: "Prociono", serif;
   font-weight: 400;
   font-style: normal;
-}
 
-#header {
-  height: auto;
-}
+  #header {
+    height: auto;
+  }
 
-#header #navigation {
-  background: #353535;
-  border-bottom: 1px solid #222;
-}
+  #header #navigation {
+    background: #353535;
+    border-bottom: 1px solid #222;
+  }
 
-#header #navigation ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
-}
+  #header #navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
 
-#header #navigation ul li a {
-  color: #c9d1d9;
-  text-wrap: nowrap;
-  text-decoration: none;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  background: none;
-  background-color: #353535;
-  box-shadow: none;
-  border: none;
-  padding: 0;
-  font-family: "League Gothic", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-  font-size: 1.2em;
-}
+  #header #navigation ul li a {
+    color: #c9d1d9;
+    text-wrap: nowrap;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    background: none;
+    background-color: #353535;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    font-family: "League Gothic", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+    font-size: 1.2em;
+  }
 
-.wrapper section #title h1, h1, h2, h3, h4, h5 {  
-  font-family: "League Gothic", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
+  .wrapper section #title h1, h1, h2, h3, h4, h5 {  
+    font-family: "League Gothic", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
 
-#header #navigation a:hover {
-  color: #58a6ff;
-  text-decoration: none;
+  #header #navigation a:hover {
+    color: #58a6ff;
+    text-decoration: none;
+  }
+
 }
 
