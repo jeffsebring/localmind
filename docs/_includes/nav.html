@@ -1,11 +1,21 @@
 
-        <nav id="navigation">
+        <nav id="nav">
             <ul>
-              <li><a href="{{ site.baseurl }}/">Home</a></li>
-              <li><a href="{{ site.baseurl }}/getting_started.html">Getting Started</a></li>
-              <li><a href="{{ site.baseurl }}/usage.html">Usage</a></li>
-              <li><a href="{{ site.baseurl }}/configuration.html">Configuration</a></li>
-              <li><a href="{{ site.baseurl }}/development.html">Development</a></li>
+              <li><a href="{{ site.baseurl }}/" 
+              {% if page.url == '{{ site.baseurl }}/' %}aria-current="page"{% endif %}>
+              Home</a></li>
+              <li><a href="{{ site.baseurl }}/getting_started.html" 
+              {% if page.url == '{{ site.baseurl }}/getting_started.html' %}aria-current="page"{% endif %}>
+              Getting Started</a></li>
+              <li><a href="{{ site.baseurl }}/usage.html" 
+              {% if page.url == '{{ site.baseurl }}/usage.html' %}aria-current="page"{% endif %}>
+              Usage</a></li>
+              <li><a href="{{ site.baseurl }}/configuration.html" 
+              {% if page.url == '{{ site.baseurl }}/configuration.html' %}aria-current="page"{% endif %}>
+              Configuration</a></li>
+              <li><a href="{{ site.baseurl }}/development.html" 
+              {% if page.url == '{{ site.baseurl }}/development.html' %}aria-current="page"{% endif %}>
+              Development</a></li>
               <li><a href="{{ site.github.repository_url }}">View On GitHub</a></li>
             </ul>
         </nav>

@@ -60,7 +60,7 @@
     font-style: normal;
   }
 
-  #header #navigation a:hover {
+  #header #navigation a:hover, #header #navigation a[aria-current="page"] {
     color: #58a6ff;
     text-decoration: none;
   }

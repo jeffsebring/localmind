@@ -174,4 +174,4 @@ The smallest recommended configuration is:
 
 ---
 
-[Back to Top](#header)
+[Back to Top](#title)
