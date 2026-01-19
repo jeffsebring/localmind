@@ -30,6 +30,31 @@ def _write_output(*, output_text: str, source_file: Path | None, model: str) -> 
 
     return output_path
 
+def print_paths() -> None:
+    """Print all important LocalMind system paths.
+
+    This function shows the main directories LocalMind uses:
+    outputs, prompts, config, and logs. It is intended to be called
+    from the CLI command `paths`.
+    """
+    from .config import get_outputs_dir
+    from pathlib import Path
+
+    # Base home directory for LocalMind
+    home_dir = Path.home() / ".localmind"
+
+    # Main directories
+    outputs_dir = get_outputs_dir()
+    prompts_dir = home_dir / "prompts"
+    config_dir = home_dir / "config"
+    logs_dir = home_dir / "logs"
+
+    # Print each path
+    print(f"Outputs directory: {outputs_dir}")
+    print(f"Prompts directory: {prompts_dir}")
+    print(f"Config directory: {config_dir}")
+    print(f"Logs directory: {logs_dir}")
+
 def run_file(prompt_file: Path, source_file: Path, model: str = None, dry_run: bool = False):
     """
     Run a script to process a prompt file and optionally a source file using the specified Ollama model.
