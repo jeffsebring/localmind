@@ -174,4 +174,4 @@ The smallest recommended configuration is:
 
 ---
 
-End of configuration.md
+[Back to Top](#header)

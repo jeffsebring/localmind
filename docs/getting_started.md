@@ -174,5 +174,5 @@ python -m localmind outputs
 
 ---
 
-End of getting_started.md
+[Back to Top](#header)
 

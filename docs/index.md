@@ -27,4 +27,4 @@ This documentation provides all the information to install, configure, and use L
 
 ---
 
-End of index.md
+[Back to Top](#header)
