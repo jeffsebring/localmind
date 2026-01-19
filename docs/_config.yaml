@@ -1,8 +1,6 @@
 title: LocalMind Documentation
 description: Local AI prompt runner documentation
-baseurl: "/localmind"  # your repo name
+baseurl: "/localmind"
 url: "https://jeffsebring.github.io"
-theme: jekyll-theme-slate
-# or for no theme at all
-# theme: null
+theme: jekyll-theme-midnight
 
