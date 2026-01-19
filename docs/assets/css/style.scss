@@ -17,14 +17,17 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 #header #navigation a {
   color: #c9d1d9;
+  text-wrap: nowrap;
   text-decoration: none;
   font-weight: 500;
   letter-spacing: 0.02em;
+  background-color: none;
+  padding: 0;
 }
 
 #header #navigation a:hover {
